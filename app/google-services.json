@@ -1,0 +1,44 @@
+{
+  "project_info": {
+    "project_number": "35207517763",
+    "firebase_url": "https://lecturesurvey-project.firebaseio.com",
+    "project_id": "lecturesurvey-project",
+    "storage_bucket": "lecturesurvey-project.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:35207517763:android:67a3ddb1621c625e",
+        "android_client_info": {
+          "package_name": "com.shape.eduapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "35207517763-i0pj4j72nfc1vm3etmu8re8fbvafao50.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.shape.eduapp",
+            "certificate_hash": "31dab2592dbde14d572eb79f35f56e0d301e63aa"
+          }
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD2AtG_4UXHFwEDjzIdoJ_GjyJkEQGRzHk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "35207517763-r987l4a053jdbd2bhbc4tjio8ofg4ntj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
