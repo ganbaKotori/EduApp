@@ -27,7 +27,7 @@
     <EditText
         android:id="@+id/etEmailLogin"
         android:hint="Email"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textEmailAddress" />
@@ -35,7 +35,7 @@
     <EditText
         android:id="@+id/etPwLogin"
         android:hint="Password"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPassword" />
