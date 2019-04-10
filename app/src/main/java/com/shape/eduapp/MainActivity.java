@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
                                 progBarLogin.setVisibility(View.GONE); //Progressbar UI
                                 if (task.isSuccessful()) {
                                     if (firebaseAuth.getCurrentUser().isEmailVerified()) { //VERIFY USER EMAIL BEFORE THEY CAN LOGIN
-                                        startActivity(new Intent(MainActivity.this, ProfileActivity.class));
+                                        startActivity(new Intent(MainActivity.this, StudentMainActivity.class));
                                     }
                                     else {
                                         Toast.makeText(MainActivity.this, "Please verify your email address",

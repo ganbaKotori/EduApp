@@ -17,9 +17,9 @@ public class HomeApplication extends Application {
         FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
         FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
 
-        //Send user back to ProfileActivity if user still logged in & verify user
+        //Send user back to StudentMainActivity if user still logged in & verify user
         if (firebaseUser != null && firebaseUser.isEmailVerified()) {
-            startActivity(new Intent(HomeApplication.this, ProfileActivity.class));
+            startActivity(new Intent(HomeApplication.this, StudentMainActivity.class));
         }
     }
 }

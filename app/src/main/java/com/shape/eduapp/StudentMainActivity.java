@@ -11,7 +11,7 @@ import android.widget.TextView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class ProfileActivity extends AppCompatActivity {
+public class StudentMainActivity extends AppCompatActivity {
     TextView tvUserEmail;
     Button btnLogout;
 
@@ -36,7 +36,7 @@ public class ProfileActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) { //Makes sure the user is logged out
                 FirebaseAuth.getInstance().signOut();
-                Intent intent = new Intent(ProfileActivity.this, MainActivity.class);
+                Intent intent = new Intent(StudentMainActivity.this, MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
