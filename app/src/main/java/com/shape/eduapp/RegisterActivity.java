@@ -6,9 +6,11 @@ import android.os.Bundle;
 
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -20,6 +22,7 @@ public class RegisterActivity extends AppCompatActivity {
     Toolbar toolbarRegistration;
     ProgressBar progressBarRegistration;
     EditText etEmailRegistration, etPwRegistration;
+    Spinner spinnerRegistration;
     Button btnRegistration;
 
     FirebaseAuth firebaseAuth;
@@ -35,6 +38,12 @@ public class RegisterActivity extends AppCompatActivity {
         etEmailRegistration = findViewById(R.id.etEmailRegistration);
         etPwRegistration = findViewById(R.id.etPwRegistration);
         btnRegistration = findViewById(R.id.btnRegistration);
+        //Spinner
+        spinnerRegistration = findViewById(R.id.spinnerRegistration);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.userTypeRegistration, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerRegistration.setAdapter(adapter);
 
         firebaseAuth = FirebaseAuth.getInstance();
 

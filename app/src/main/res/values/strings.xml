@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">EduApp</string>
+    <string-array name="userTypeRegistration">
+        <item>Student</item>
+        <item>Teacher</item>
+    </string-array>
 </resources>
