@@ -7,9 +7,11 @@ import android.os.Bundle;
 
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
     Toolbar toolbarLogin;
     ProgressBar progBarLogin;
     EditText etEmailLogin, etPwLogin;
+    Spinner spinnerLogin;
     Button btnLogin;
     TextView tvRegLink, tvResetPwLink;
 
@@ -40,6 +43,12 @@ public class MainActivity extends AppCompatActivity {
         btnLogin = findViewById(R.id.btnLogin);
         tvRegLink = findViewById(R.id.tvRegLink);
         tvResetPwLink = findViewById(R.id.tvResetPwLink);
+        //Spinner
+        spinnerLogin = findViewById(R.id.spinnerLogin);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.userTypeSpinner, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerLogin.setAdapter(adapter);
 
         firebaseAuth = FirebaseAuth.getInstance();
 
@@ -47,28 +56,32 @@ public class MainActivity extends AppCompatActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                progBarLogin.setVisibility(View.VISIBLE); //Progressbar UI
-                firebaseAuth.signInWithEmailAndPassword(etEmailLogin.getText().toString(),
-                        etPwLogin.getText().toString())
-                        .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                progBarLogin.setVisibility(View.GONE); //Progressbar UI
-                                if (task.isSuccessful()) {
-                                    if (firebaseAuth.getCurrentUser().isEmailVerified()) { //VERIFY USER EMAIL BEFORE THEY CAN LOGIN
-                                        startActivity(new Intent(MainActivity.this, StudentMainActivity.class));
-                                    }
-                                    else {
-                                        Toast.makeText(MainActivity.this, "Please verify your email address",
+                if (etEmailLogin.getText().toString().isEmpty() && etPwLogin.getText().toString().isEmpty()) {
+                    Toast.makeText(MainActivity.this, "Please fill out the fields with valid input.",
+                            Toast.LENGTH_LONG).show();
+                }
+                else {
+                    progBarLogin.setVisibility(View.VISIBLE); //Progressbar UI
+                    firebaseAuth.signInWithEmailAndPassword(etEmailLogin.getText().toString(),
+                            etPwLogin.getText().toString())
+                            .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                                @Override
+                                public void onComplete(@NonNull Task<AuthResult> task) {
+                                    progBarLogin.setVisibility(View.GONE); //Progressbar UI
+                                    if (task.isSuccessful()) {
+                                        if (firebaseAuth.getCurrentUser().isEmailVerified()) { //VERIFY USER EMAIL BEFORE THEY CAN LOGIN
+                                            startActivity(new Intent(MainActivity.this, StudentMainActivity.class));
+                                        } else {
+                                            Toast.makeText(MainActivity.this, "Please verify your email address",
+                                                    Toast.LENGTH_LONG).show();
+                                        }
+                                    } else {
+                                        Toast.makeText(MainActivity.this, task.getException().getMessage(),
                                                 Toast.LENGTH_LONG).show();
                                     }
                                 }
-                                else {
-                                    Toast.makeText(MainActivity.this, task.getException().getMessage(),
-                                            Toast.LENGTH_LONG).show();
-                                }
-                            }
-                        });
+                            });
+                }
             }
         });
 

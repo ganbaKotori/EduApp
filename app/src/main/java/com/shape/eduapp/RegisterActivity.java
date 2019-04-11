@@ -41,7 +41,7 @@ public class RegisterActivity extends AppCompatActivity {
         //Spinner
         spinnerRegistration = findViewById(R.id.spinnerRegistration);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-                R.array.userTypeRegistration, android.R.layout.simple_spinner_item);
+                R.array.userTypeSpinner, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerRegistration.setAdapter(adapter);
 
@@ -51,37 +51,43 @@ public class RegisterActivity extends AppCompatActivity {
         btnRegistration.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                progressBarRegistration.setVisibility(View.VISIBLE); //Progressbar UI
-                firebaseAuth.createUserWithEmailAndPassword(etEmailRegistration.getText().toString(),
-                        etPwRegistration.getText().toString()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        progressBarRegistration.setVisibility(View.GONE); //Progressbar UI
-                        if (task.isSuccessful()) {
-                            firebaseAuth.getCurrentUser().sendEmailVerification()
-                                    .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                        @Override
-                                        public void onComplete(@NonNull Task<Void> task) {
-                                            if (task.isSuccessful()) {
-                                                Toast.makeText(RegisterActivity.this, "Registered successfully", //Successful registration
-                                                        Toast.LENGTH_LONG).show();
-                                                etEmailRegistration.setText(""); //Clear fields upon successful registration
-                                                etPwRegistration.setText("");
+                if (etEmailRegistration.getText().toString().isEmpty() && etPwRegistration.getText().toString().isEmpty()) {
+                    Toast.makeText(RegisterActivity.this, "Please fill out the fields with valid input.",
+                            Toast.LENGTH_LONG).show();
+                }
+                else {
+                    progressBarRegistration.setVisibility(View.VISIBLE); //Progressbar UI
+                    firebaseAuth.createUserWithEmailAndPassword(etEmailRegistration.getText().toString(),
+                            etPwRegistration.getText().toString()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            progressBarRegistration.setVisibility(View.GONE); //Progressbar UI
+                            if (task.isSuccessful()) {
+                                firebaseAuth.getCurrentUser().sendEmailVerification()
+                                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<Void> task) {
+                                                if (task.isSuccessful()) {
+                                                    Toast.makeText(RegisterActivity.this, "Registered successfully", //Successful registration
+                                                            Toast.LENGTH_LONG).show();
+                                                    etEmailRegistration.setText(""); //Clear fields upon successful registration
+                                                    etPwRegistration.setText("");
+                                                }
+                                                else {
+                                                    Toast.makeText(RegisterActivity.this, task.getException().getMessage(), //Error registering
+                                                            Toast.LENGTH_LONG).show();
+                                                }
                                             }
-                                            else {
-                                                Toast.makeText(RegisterActivity.this, task.getException().getMessage(), //Error registering
-                                                        Toast.LENGTH_LONG).show();
-                                            }
-                                        }
-                                    });
+                                        });
 
+                            }
+                            else {
+                                Toast.makeText(RegisterActivity.this, task.getException().getMessage(), //Error registering
+                                        Toast.LENGTH_LONG).show();
+                            }
                         }
-                        else {
-                            Toast.makeText(RegisterActivity.this, task.getException().getMessage(), //Error registering
-                                    Toast.LENGTH_LONG).show();
-                        }
-                    }
-                });
+                    });
+                }
             }
         });
     }

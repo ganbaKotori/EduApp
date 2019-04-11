@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">EduApp</string>
-    <string-array name="userTypeRegistration">
+    <string-array name="userTypeSpinner">
         <item>Student</item>
         <item>Teacher</item>
     </string-array>

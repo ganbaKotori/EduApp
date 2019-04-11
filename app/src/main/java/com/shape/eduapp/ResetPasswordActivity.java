@@ -39,22 +39,26 @@ public class ResetPasswordActivity extends AppCompatActivity {
         btnReset.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                progressBarReset.setVisibility(View.VISIBLE);
-                firebaseAuth.sendPasswordResetEmail(etEmailReset.getText().toString())
-                        .addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                progressBarReset.setVisibility(View.GONE);
-                                if (task.isSuccessful()) {
-                                    Toast.makeText(ResetPasswordActivity.this,
-                                            "Request sent to your email", Toast.LENGTH_LONG).show();
+                if (etEmailReset.getText().toString().isEmpty()) {
+                    Toast.makeText(ResetPasswordActivity.this, "Please enter valid input.", Toast.LENGTH_LONG).show();
+                }
+                else {
+                    progressBarReset.setVisibility(View.VISIBLE);
+                    firebaseAuth.sendPasswordResetEmail(etEmailReset.getText().toString())
+                            .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    progressBarReset.setVisibility(View.GONE);
+                                    if (task.isSuccessful()) {
+                                        Toast.makeText(ResetPasswordActivity.this,
+                                                "Request sent to your email", Toast.LENGTH_LONG).show();
+                                    } else {
+                                        Toast.makeText(ResetPasswordActivity.this,
+                                                task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                                    }
                                 }
-                                else {
-                                    Toast.makeText(ResetPasswordActivity.this,
-                                            task.getException().getMessage(), Toast.LENGTH_LONG).show();
-                                }
-                            }
-                        });
+                            });
+                }
             }
         });
     }
