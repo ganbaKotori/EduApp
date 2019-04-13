@@ -1,8 +1,11 @@
 package com.shape.eduapp;
 
+import java.util.ArrayList;
+
 public class Course {
     private String title;
     private String description;
+    private ArrayList<Lecture> lectures = new ArrayList<>();
 
     public Course(){
 
@@ -27,5 +30,13 @@ public class Course {
 
     public void setDescription(String description){
         this.description = description;
+    }
+
+    public ArrayList<Lecture> getLectures() {
+        return lectures;
+    }
+
+    public void setLectures(ArrayList<Lecture> lectures){
+        this.lectures = lectures;
     }
 }
