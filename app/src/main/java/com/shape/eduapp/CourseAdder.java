@@ -58,12 +58,12 @@ public class CourseAdder extends AppCompatActivity {
                 else {
                     //progressBarRegistration.setVisibility(View.VISIBLE); //Progressbar UI
                     Course newCourse = new Course(title.getText().toString(),description.getText().toString());
-                    mCourseReference.push().setValue(newCourse).addOnCompleteListener(new OnCompleteListener<Void>(){
+                    mCourseReference.child(newCourse.getTitle()).setValue(newCourse).addOnCompleteListener(new OnCompleteListener<Void>(){
                     @Override
                         public void onComplete(@NonNull Task<Void> task) {
                            // progressBarRegistration.setVisibility(View.GONE); //Progressbar UI
                             if (task.isSuccessful()) {
-                                Toast.makeText(CourseAdder.this, "Course successfully added", //Successful registration
+                                Toast.makeText(CourseAdder.this, "Lecture successfully added", //Successful registration
                                                             Toast.LENGTH_LONG).show();
                                                     title.setText(""); //Clear fields upon successful registration
                                                     description.setText("");

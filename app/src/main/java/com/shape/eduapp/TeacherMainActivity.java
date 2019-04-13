@@ -27,6 +27,7 @@ public class TeacherMainActivity extends AppCompatActivity {
     TextView tvUserEmail;
     Button btnLogout;
     Button btnCourseAdder;
+    Button btnLectureAdder;
 
     private ListView mCourseListView;
     ArrayList<String> courses = new ArrayList<String>();
@@ -45,6 +46,7 @@ public class TeacherMainActivity extends AppCompatActivity {
         tvUserEmail = findViewById(R.id.tvUserEmail);
         btnLogout = findViewById(R.id.btnLogout);
         btnCourseAdder = findViewById(R.id.courseAdder);
+        btnLectureAdder = findViewById(R.id.lectureAdder);
 
         firebaseAuth = firebaseAuth.getInstance();
         mFirebaseDatabase = FirebaseDatabase.getInstance();
@@ -106,6 +108,15 @@ public class TeacherMainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) { //Makes sure the user is logged out
                 Intent intent = new Intent(TeacherMainActivity.this, CourseAdder.class);
+
+                startActivity(intent);
+            }
+        });
+
+        btnLectureAdder.setOnClickListener(new View.OnClickListener() { //User signout
+            @Override
+            public void onClick(View v) { //Makes sure the user is logged out
+                Intent intent = new Intent(TeacherMainActivity.this, LectureAdder.class);
 
                 startActivity(intent);
             }

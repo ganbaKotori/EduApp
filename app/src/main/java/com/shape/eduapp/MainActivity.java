@@ -93,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
                                                 @Override
                                                 public void onDataChange(DataSnapshot dataSnapshot) {
                                                     userTypeDBString = dataSnapshot.getValue(String.class);
-                                                    toolbarLogin.setTitle(userTypeDBString);
+
                                                 }
 
                                                 @Override
@@ -102,10 +102,10 @@ public class MainActivity extends AppCompatActivity {
                                                 }
                                             });
 
-                                            if (userType.equals(userTypeDBString)) { //Send to student activity
+                                            if (userType.equals("Student") && userType.equals(userTypeDBString)) { //Send to student activity
                                                 startActivity(new Intent(MainActivity.this, StudentMainActivity.class));
                                             }
-                                            else if (userType.equals(userTypeDBString)) { //Send to teacher activity
+                                            if (userType.equals("Teacher") && userType.equals(userTypeDBString)) { //Send to teacher activity
                                                 startActivity(new Intent(MainActivity.this, TeacherMainActivity.class));
                                             }
                                             else {

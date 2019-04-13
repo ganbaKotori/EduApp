@@ -9,6 +9,14 @@ public class Lecture {
     private ArrayList<Topic> topics = new ArrayList<>();
     private String date;
 
+    public Lecture(){
+
+    }
+
+    public Lecture(String date){
+        this.date = date;
+    }
+
     public void setDate(String date){
         this.date = date;
     }
