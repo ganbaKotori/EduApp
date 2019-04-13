@@ -26,6 +26,7 @@ import java.util.ArrayList;
 public class TeacherMainActivity extends AppCompatActivity {
     TextView tvUserEmail;
     Button btnLogout;
+    Button btnCourseAdder;
 
     private ListView mCourseListView;
     ArrayList<String> courses = new ArrayList<String>();
@@ -43,6 +44,7 @@ public class TeacherMainActivity extends AppCompatActivity {
 
         tvUserEmail = findViewById(R.id.tvUserEmail);
         btnLogout = findViewById(R.id.btnLogout);
+        btnCourseAdder = findViewById(R.id.courseAdder);
 
         firebaseAuth = firebaseAuth.getInstance();
         mFirebaseDatabase = FirebaseDatabase.getInstance();
@@ -96,6 +98,15 @@ public class TeacherMainActivity extends AppCompatActivity {
                 Intent intent = new Intent(TeacherMainActivity.this, MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+            }
+        });
+
+        btnCourseAdder.setOnClickListener(new View.OnClickListener() { //User signout
+            @Override
+            public void onClick(View v) { //Makes sure the user is logged out
+                Intent intent = new Intent(TeacherMainActivity.this, CourseAdder.class);
+
                 startActivity(intent);
             }
         });

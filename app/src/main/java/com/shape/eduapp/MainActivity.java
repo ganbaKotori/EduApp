@@ -93,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
                                                 @Override
                                                 public void onDataChange(DataSnapshot dataSnapshot) {
                                                     userTypeDBString = dataSnapshot.getValue(String.class);
-                                                    //toolbarLogin.setTitle(role);
+                                                    toolbarLogin.setTitle(userTypeDBString);
                                                 }
 
                                                 @Override

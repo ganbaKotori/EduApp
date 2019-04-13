@@ -13,6 +13,7 @@
         <activity android:name=".StudentMainActivity" />
         <activity android:name=".ResetPasswordActivity" />
         <activity android:name=".RegisterActivity" />
+        <activity android:name=".CourseAdder"/>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

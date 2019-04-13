@@ -11,34 +11,36 @@
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
+        app:title="Add new course"
         android:layout_height="wrap_content"
         android:background="?attr/colorPrimary"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme" />
 
     <TextView
-        android:id="@+id/tvUserEmail"
         android:layout_width="match_parent"
         android:layout_height="36dp"
-        android:text="TextView" />
+        android:text="Course Title" />
 
-    <Button
-        android:id="@+id/courseAdder"
+    <EditText
+        android:id="@+id/courseTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Add Course" />
-
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="36dp"
+        android:text="Course Description" />
+    <EditText
+        android:id="@+id/courseDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
     <Button
-        android:id="@+id/btnLogout"
+        android:id="@+id/addCourse"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        android:text="Logout" />
-
-    <ListView
-        android:id="@+id/courseListView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:text="Add Course" />
 
 
 </LinearLayout>
