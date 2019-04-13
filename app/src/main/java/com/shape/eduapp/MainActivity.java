@@ -19,6 +19,11 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class MainActivity extends AppCompatActivity {
     Toolbar toolbarLogin;
@@ -29,6 +34,10 @@ public class MainActivity extends AppCompatActivity {
     TextView tvRegLink, tvResetPwLink;
 
     FirebaseAuth firebaseAuth;
+    FirebaseDatabase firebaseDatabase;
+    DatabaseReference databaseReference;
+
+    String userTypeDBString; //To contain userType
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
         spinnerLogin.setAdapter(adapter);
 
         firebaseAuth = FirebaseAuth.getInstance();
+        firebaseDatabase = FirebaseDatabase.getInstance();
 
         //User login button action
         btnLogin.setOnClickListener(new View.OnClickListener() {
@@ -70,8 +80,40 @@ public class MainActivity extends AppCompatActivity {
                                     progBarLogin.setVisibility(View.GONE); //Progressbar UI
                                     if (task.isSuccessful()) {
                                         if (firebaseAuth.getCurrentUser().isEmailVerified()) { //VERIFY USER EMAIL BEFORE THEY CAN LOGIN
-                                            startActivity(new Intent(MainActivity.this, TeacherMainActivity.class));
-                                        } else {
+
+                                            /*
+                                                HAVE TO FIX THIS CODE TO COMPARE STRINGS
+                                             */
+                                            String userType = spinnerLogin.getSelectedItem().toString(); //Get the selected user type
+                                            databaseReference = firebaseDatabase.getReference().child("Users").
+                                                    child(firebaseAuth.getInstance().getCurrentUser().getUid()).
+                                                    child("userType");
+
+                                            databaseReference.addValueEventListener(new ValueEventListener() {
+                                                @Override
+                                                public void onDataChange(DataSnapshot dataSnapshot) {
+                                                    userTypeDBString = dataSnapshot.getValue(String.class);
+                                                    //toolbarLogin.setTitle(role);
+                                                }
+
+                                                @Override
+                                                public void onCancelled(DatabaseError databaseError) {
+                                                    System.out.println("The read failed: " + databaseError.getCode());
+                                                }
+                                            });
+
+                                            if (userType.equals(userTypeDBString)) { //Send to student activity
+                                                startActivity(new Intent(MainActivity.this, StudentMainActivity.class));
+                                            }
+                                            else if (userType.equals(userTypeDBString)) { //Send to teacher activity
+                                                startActivity(new Intent(MainActivity.this, TeacherMainActivity.class));
+                                            }
+                                            else {
+                                                Toast.makeText(MainActivity.this, "Please check to see if the correct user type is selected",
+                                                        Toast.LENGTH_LONG).show();
+                                            }
+                                        }
+                                        else {
                                             Toast.makeText(MainActivity.this, "Please verify your email address",
                                                     Toast.LENGTH_LONG).show();
                                         }

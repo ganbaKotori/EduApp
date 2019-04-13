@@ -40,6 +40,22 @@
         android:ems="10"
         android:inputType="textPassword" />
 
+    <EditText
+        android:id="@+id/etFirstNameRegistration"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="First name" />
+
+    <EditText
+        android:id="@+id/etLastNameRegistration"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="Last name" />
+
     <TextView
         android:id="@+id/textView"
         android:layout_width="match_parent"

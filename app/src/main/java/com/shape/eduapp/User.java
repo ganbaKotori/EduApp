@@ -1,12 +1,10 @@
 package com.shape.eduapp;
 
 public class User {
-
     private String firstName;
     private String lastName;
     private String email;
     private String userType;
-
 
     public User(String firstName, String lastName, String email, String userType) {
         this.firstName = firstName;

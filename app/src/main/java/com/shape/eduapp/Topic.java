@@ -1,10 +1,10 @@
 package com.shape.eduapp;
 
 public class Topic {
-
-
     private String title;
     private String description;
+
+    public Topic() {}
 
     public Topic(String title, String description) {
         this.title = title;

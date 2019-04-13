@@ -36,10 +36,6 @@ public class TeacherMainActivity extends AppCompatActivity {
     private DatabaseReference mCourseDatabaseReference;
     private ChildEventListener mChildEventListener;
 
-
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
