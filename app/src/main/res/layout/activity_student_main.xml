@@ -15,9 +15,11 @@
         android:maxWidth="100dp"
         android:maxHeight="100dp"
         android:scaleType="fitCenter"
-        app:srcCompat="@drawable/maya_logo_ii_blk"
-        android:layout_marginLeft="15dp"
+        app:srcCompat="@mipmap/maya_logo_ii_blk"
+        android:layout_marginLeft="10dp"
         android:layout_marginRight="15dp"/>
+
+
     <TextView
         android:id="@+id/tvUserEmail"
         android:layout_width="match_parent"
@@ -44,6 +46,16 @@
         android:layout_marginLeft="15dp"
         android:layout_marginTop="20dp"
         android:layout_marginRight="15dp"/>
+
+    <TextView
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Courses"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="15dp"
+        android:textSize="40sp"/>
 
     <ListView
         android:id="@+id/courseListView"

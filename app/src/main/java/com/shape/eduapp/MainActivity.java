@@ -101,16 +101,11 @@ public class MainActivity extends AppCompatActivity {
                                                 }
                                             });
 
-                                            if (("Student").equals(userTypeDBString)) { //Send to student activity
+                                              //Send to student activity
                                                 startActivity(new Intent(MainActivity.this, StudentMainActivity.class));
-                                            }
-                                            if (("Teacher").equals(userTypeDBString)) { //Send to teacher activity
-                                                startActivity(new Intent(MainActivity.this, TeacherMainActivity.class));
-                                            }
-                                            else {
-                                                Toast.makeText(MainActivity.this, "Please check to see if the correct user type is selected",
-                                                        Toast.LENGTH_LONG).show();
-                                            }
+                                            
+
+
                                         }
                                         else {
                                             Toast.makeText(MainActivity.this, "Please verify your email address",
