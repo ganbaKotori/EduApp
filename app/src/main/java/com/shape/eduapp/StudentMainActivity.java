@@ -13,7 +13,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class StudentMainActivity extends AppCompatActivity {
     TextView tvUserEmail;
-    Button btnLogout;
+    Button btnLogout,btnMaya;
 
     FirebaseAuth firebaseAuth;
     FirebaseUser firebaseUser;
@@ -25,6 +25,7 @@ public class StudentMainActivity extends AppCompatActivity {
 
         tvUserEmail = findViewById(R.id.tvUserEmail);
         btnLogout = findViewById(R.id.btnLogout);
+        btnMaya = findViewById(R.id.btnMaya);
 
         firebaseAuth = firebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
@@ -39,6 +40,15 @@ public class StudentMainActivity extends AppCompatActivity {
                 Intent intent = new Intent(StudentMainActivity.this, MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+            }
+        });
+
+        btnMaya.setOnClickListener(new View.OnClickListener() { //User signout
+            @Override
+            public void onClick(View v) { //Makes sure the user is logged out
+                Intent intent = new Intent(StudentMainActivity.this, MayaChat.class);
+
                 startActivity(intent);
             }
         });

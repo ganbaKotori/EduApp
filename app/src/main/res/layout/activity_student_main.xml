@@ -14,6 +14,12 @@
         android:text="TextView" />
 
     <Button
+        android:id="@+id/btnMaya"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Chat with Maya" />
+
+    <Button
         android:id="@+id/btnLogout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
