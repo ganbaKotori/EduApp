@@ -4,7 +4,7 @@
 
     <!--Watson Assistant service credentials-->
     <!-- REPLACE `ASSISTANT_ID_HERE` with ID of the Assistant to use -->
-    <string name="assistant_id">3bb9477f-5e23-42d9-91cf-31e093672da8</string>
+    <string name="assistant_id">e87ec483-42e2-4789-a3b1-ad0ec34fa850</string>
 
     <!-- REPLACE `ASSISTANT_API_KEY_HERE` with Watson Assistant service API Key-->
     <string name="assistant_apikey">gEjClGmKg1ItMRGPU_HulP0qfsllzYbNqwHBthuRy4gP</string>

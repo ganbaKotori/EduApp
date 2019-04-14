@@ -7,21 +7,48 @@
     android:orientation="vertical"
     tools:context=".StudentMainActivity">
 
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:maxWidth="100dp"
+        android:maxHeight="100dp"
+        android:scaleType="fitCenter"
+        app:srcCompat="@drawable/maya_logo_ii_blk"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"/>
     <TextView
         android:id="@+id/tvUserEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="TextView" />
+        android:text="TextView"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="15dp"/>
 
     <Button
         android:id="@+id/btnMaya"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Chat with Maya" />
+        android:text="Chat with Maya"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="15dp"/>
 
     <Button
         android:id="@+id/btnLogout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Logout" />
+        android:text="Logout"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="15dp"/>
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="15dp"/>
 </LinearLayout>

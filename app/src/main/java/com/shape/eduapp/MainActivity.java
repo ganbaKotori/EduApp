@@ -26,10 +26,10 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class MainActivity extends AppCompatActivity {
-    Toolbar toolbarLogin;
-    ProgressBar progBarLogin;
+
+
     EditText etEmailLogin, etPwLogin;
-    Spinner spinnerLogin;
+
     Button btnLogin;
     TextView tvRegLink, tvResetPwLink;
 
@@ -44,20 +44,20 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        toolbarLogin = findViewById(R.id.toolbarLogin);
-        toolbarLogin.setTitle("Login to EduApp"); //Login toolbar title
-        progBarLogin = findViewById(R.id.progBarLogin);
+       // toolbarLogin = findViewById(R.id.toolbarLogin);
+        //toolbarLogin.setTitle("Login to EduApp"); //Login toolbar title
+       // progBarLogin = findViewById(R.id.progBarLogin);
         etEmailLogin= findViewById(R.id.etEmailLogin);
         etPwLogin = findViewById(R.id.etPwLogin);
         btnLogin = findViewById(R.id.btnLogin);
         tvRegLink = findViewById(R.id.tvRegLink);
         tvResetPwLink = findViewById(R.id.tvResetPwLink);
         //Spinner
-        spinnerLogin = findViewById(R.id.spinnerLogin);
+       // spinnerLogin = findViewById(R.id.spinnerLogin);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.userTypeSpinner, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerLogin.setAdapter(adapter);
+
 
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseDatabase = FirebaseDatabase.getInstance();
@@ -71,20 +71,19 @@ public class MainActivity extends AppCompatActivity {
                             Toast.LENGTH_LONG).show();
                 }
                 else {
-                    progBarLogin.setVisibility(View.VISIBLE); //Progressbar UI
+                    //Progressbar UI
                     firebaseAuth.signInWithEmailAndPassword(etEmailLogin.getText().toString(),
                             etPwLogin.getText().toString())
                             .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                                 @Override
                                 public void onComplete(@NonNull Task<AuthResult> task) {
-                                    progBarLogin.setVisibility(View.GONE); //Progressbar UI
                                     if (task.isSuccessful()) {
                                         if (firebaseAuth.getCurrentUser().isEmailVerified()) { //VERIFY USER EMAIL BEFORE THEY CAN LOGIN
 
                                             /*
                                                 HAVE TO FIX THIS CODE TO COMPARE STRINGS
                                              */
-                                            String userType = spinnerLogin.getSelectedItem().toString(); //Get the selected user type
+
                                             databaseReference = firebaseDatabase.getReference().child("Users").
                                                     child(firebaseAuth.getInstance().getCurrentUser().getUid()).
                                                     child("userType");
@@ -102,10 +101,10 @@ public class MainActivity extends AppCompatActivity {
                                                 }
                                             });
 
-                                            if (userType.equals("Student") && userType.equals(userTypeDBString)) { //Send to student activity
+                                            if (("Student").equals(userTypeDBString)) { //Send to student activity
                                                 startActivity(new Intent(MainActivity.this, StudentMainActivity.class));
                                             }
-                                            if (userType.equals("Teacher") && userType.equals(userTypeDBString)) { //Send to teacher activity
+                                            if (("Teacher").equals(userTypeDBString)) { //Send to teacher activity
                                                 startActivity(new Intent(MainActivity.this, TeacherMainActivity.class));
                                             }
                                             else {

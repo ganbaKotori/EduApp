@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
@@ -12,4 +12,14 @@
         <item name="android:windowBackground">@drawable/backgroud_splash</item>
     </style>
 
+   <!-- <solid android:color="#FFFFFF"/>
+
+    <stroke
+        android:width="2dp"
+        android:color="#E7E7E7"
+        android:height="10dp"/>
+
+    <corners
+        android:radius="5dp"/>
+-->
 </resources>

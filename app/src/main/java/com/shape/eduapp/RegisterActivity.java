@@ -34,8 +34,8 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        toolbarRegistration = findViewById(R.id.toolbarRegistration);
-        toolbarRegistration.setTitle("Register for EduApp"); //Register toolbar title
+        //toolbarRegistration = findViewById(R.id.toolbarRegistration);
+       // toolbarRegistration.setTitle("Register for EduApp"); //Register toolbar title
         progressBarRegistration = findViewById(R.id.progressBarRegistration);
         etEmailRegistration = findViewById(R.id.etEmailRegistration);
         etPwRegistration = findViewById(R.id.etPwRegistration);
