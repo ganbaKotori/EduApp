@@ -1,22 +1,40 @@
 package com.shape.eduapp;
 
 import android.content.Intent;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.ArrayList;
 
 public class StudentMainActivity extends AppCompatActivity {
     TextView tvUserEmail;
     Button btnLogout,btnMaya;
 
+    private ListView mCourseListView;
+    ArrayList<String> courses = new ArrayList<String>();
+
     FirebaseAuth firebaseAuth;
     FirebaseUser firebaseUser;
+
+    private FirebaseDatabase mFirebaseDatabase;
+    private DatabaseReference mCourseDatabaseReference;
+    private ChildEventListener mChildEventListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +47,43 @@ public class StudentMainActivity extends AppCompatActivity {
 
         firebaseAuth = firebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
+        mFirebaseDatabase = FirebaseDatabase.getInstance();
+
+        mCourseDatabaseReference = mFirebaseDatabase.getReference().child("courses");
+
+        mCourseListView = (ListView) findViewById(R.id.courseListView);
+        final ArrayAdapter<String> courseArrayAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,courses);
+        mCourseListView.setAdapter(courseArrayAdapter);
+
+        mChildEventListener = new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                Course myChildValues = dataSnapshot.getValue(Course.class);
+                courses.add(myChildValues.getTitle());
+                courseArrayAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                courseArrayAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        };
+        mCourseDatabaseReference.addChildEventListener(mChildEventListener);
 
         tvUserEmail.setText(firebaseUser.getEmail());
 

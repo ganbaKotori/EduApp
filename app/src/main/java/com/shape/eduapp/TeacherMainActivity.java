@@ -34,6 +34,7 @@ public class TeacherMainActivity extends AppCompatActivity {
 
     FirebaseAuth firebaseAuth;
     FirebaseUser firebaseUser;
+
     private FirebaseDatabase mFirebaseDatabase;
     private DatabaseReference mCourseDatabaseReference;
     private ChildEventListener mChildEventListener;
